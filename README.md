@@ -1,0 +1,1 @@
+# Copy-HTML-Text-Chrome-Extension
