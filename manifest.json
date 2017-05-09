@@ -1,0 +1,25 @@
+{
+    "manifest_version": 1,
+
+    "name": "Copy Highlighted HTML",
+    "description": "Copy the highlighted text in HTML format.",
+    "version": "1.0",
+
+    "browser_action": {
+        "default_icon": "copy_html_large.png"
+    },
+
+    "permissions": [
+        "contextMenus"
+    ],
+
+    "icons": {
+        "16": "copy_html_bitty.png",
+        "48": "copy_html_small.png",
+        "128": "copy_html_large.png"
+    },
+
+    "background": {
+        "scripts": ["main.js"]
+    }
+}
