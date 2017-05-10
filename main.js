@@ -1,14 +1,21 @@
 promptSelectedHTML = function(){
-    
-    var HTMLText = getSelectionHtml();
-
-    window.prompt("Copy to clipboard: Ctrl+C, Enter", HTMLText);
+	
+	chrome.tabs.query({ currentWindow: true, active: true }, getTabs);
 }
 
-function getSelectionHtml() {
+function getTabs(tabs) {
+	
+	chrome.tabs.executeScript(null, { file: "injected.js" });
+	
+	var HTMLText = getSelectionHTML(win);
+  
+	window.prompt("Copy to clipboard: Ctrl+C, Enter", HTMLText);
+}
+
+function getSelectionHTML(curWindows) {
     var html = "";
-    if (typeof window.getSelection != "undefined") {
-        var sel = window.getSelection();
+    if (typeof curWindows.getSelection != "undefined") {
+        var sel = curWindows.getSelection();
         if (sel.rangeCount) {
             var container = document.createElement("div");
             for (var i = 0, len = sel.rangeCount; i < len; ++i) {
@@ -27,6 +34,6 @@ function getSelectionHtml() {
 
 chrome.contextMenus.create({
     title: "Get Selected HTML",
-    contexts: [],
+    contexts: ["selection"],
     onclick: promptSelectedHTML
 });
